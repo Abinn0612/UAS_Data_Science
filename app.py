@@ -8,7 +8,7 @@ import geopandas as gpd
 import contextily as ctx
 import streamlit as st
 
-df = pd.read_csv('C:/ABINNN/KULIAH SEM4/Data Science/uass/df_final.csv')
+df = pd.read_csv('df_final.csv')
 
 df = df.rename(columns={
     'Persentase Penduduk Miskin (P0) Menurut Kabupaten/Kota (Persen)': 'Persentase Penduduk Miskin',
@@ -19,7 +19,7 @@ df = df.rename(columns={
     'PDRB atas Dasar Harga Konstan menurut Pengeluaran (Rupiah)': 'PDRB (Rupiah)'
     })
 
-kabKot_lat_long = pd.read_csv('C:/ABINNN/KULIAH SEM4/Data Science/uass/kota_kab_lat_long_final.csv')
+kabKot_lat_long = pd.read_csv('kota_kab_lat_long_final.csv')
 
 # Gabungkan berdasarkan kolom 'Kabupaten/Kota'
 df = df.merge(kabKot_lat_long, on='Kabupaten/Kota', how='left')
@@ -59,7 +59,7 @@ df = df.drop(columns=[
 ])
 
 import geopandas as gpd
-gdf = gpd.read_file('C:/ABINNN/KULIAH SEM4/Data Science/uass/indonesia-prov.geojson')
+gdf = gpd.read_file('indonesia-prov.geojson')
 gdf = gdf.rename(columns={'Propinsi':'Provinsi'})
 provinsi_mapping = {
     'NUSATENGGARA BARAT': 'NUSA TENGGARA BARAT',
