@@ -493,41 +493,6 @@ def visualisasi_korelasi_ipm_umur(df):
     plt.tight_layout()
     return fig
 
-def visualisasi_pca_klasifikasi(df):
-    from sklearn.decomposition import PCA
-    from sklearn.preprocessing import RobustScaler
-
-    # Kolom numerik untuk PCA (kecuali yang tidak relevan)
-    exclude_cols = ['Provinsi', 'Kabupaten/Kota', 'YEAR', 'lat', 'long',
-                    'Id_provinsi', 'Kode_provinsi', 'Sumber_provinsi',
-                    'Geometry_provinsi', 'Klasifikasi', 'Cluster_OPTICS']
-
-    fitur_numerik = df.drop(columns=[col for col in exclude_cols if col in df.columns])
-
-    # Normalisasi
-    scaler = RobustScaler()
-    fitur_scaled = scaler.fit_transform(fitur_numerik)
-
-    # PCA
-    pca = PCA(n_components=2)
-    reduced = pca.fit_transform(fitur_scaled)
-
-    # Gabungkan ke DataFrame
-    df_pca = pd.DataFrame(reduced, columns=["PCA 1", "PCA 2"])
-    df_pca["Klasifikasi"] = df["Klasifikasi"].values
-
-    # Plot
-    fig, ax = plt.subplots(figsize=(8, 6))
-    sns.scatterplot(data=df_pca, x="PCA 1", y="PCA 2", hue="Klasifikasi", palette="Set2", s=70, ax=ax)
-    ax.set_title("Persebaran Data Berdasarkan Klasifikasi", fontsize=14)
-    ax.set_xlabel("PCA 1")
-    ax.set_ylabel("PCA 2")
-    ax.grid(True)
-    ax.legend(title="Klasifikasi")
-    plt.tight_layout()
-
-    return fig
-
 def visualisasi_cluster_hover(df):
     import plotly.express as px
     from sklearn.decomposition import PCA

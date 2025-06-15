@@ -209,10 +209,7 @@ elif visual_option == "Korelasi IPM dan Umur Harapan Hidup":
     fig = visualisasi.visualisasi_korelasi_ipm_umur(df)
     st.pyplot(fig)
 
-elif visual_option == "Visualisasi PCA Klasifikasi":
-    fig = visualisasi.visualisasi_pca_klasifikasi(df)
-    st.pyplot(fig)
-
 elif visual_option == "Visualisasi PCA Interaktif":
     fig = visualisasi.visualisasi_cluster_hover(df)
     st.plotly_chart(fig, use_container_width=True)
+
