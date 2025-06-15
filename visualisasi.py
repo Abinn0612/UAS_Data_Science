@@ -524,6 +524,7 @@ def visualisasi_cluster_hover(df):
     import plotly.express as px
     from sklearn.decomposition import PCA
     from sklearn.preprocessing import RobustScaler
+    import pandas as pd
 
     # Drop kolom non-numerik yang tidak diperlukan untuk PCA
     exclude_cols = ['Provinsi', 'Kabupaten/Kota', 'YEAR', 'lat', 'long',
@@ -545,12 +546,20 @@ def visualisasi_cluster_hover(df):
     df_pca["Klasifikasi"] = df["Klasifikasi"].values
     df_pca["Kabupaten/Kota"] = df["Kabupaten/Kota"].values
 
+    # Peta warna khusus
+    warna_custom = {
+        "Lebih baik": "green",
+        "Baik": "lightblue",
+        "Kurang": "red"
+    }
+
     # Plot dengan Plotly
     fig = px.scatter(
         df_pca,
         x="PCA 1",
         y="PCA 2",
         color="Klasifikasi",
+        color_discrete_map=warna_custom,
         hover_name="Kabupaten/Kota",
         title="Persebaran Data Berdasarkan Klasifikasi (Interaktif)",
         labels={"color": "Klasifikasi"},
