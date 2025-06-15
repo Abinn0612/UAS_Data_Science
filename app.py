@@ -184,6 +184,14 @@ visual_option = st.sidebar.radio("Pilih Jenis Visualisasi", [
     "Visualisasi PCA Interaktif"  # ini Plotly
 ])
 
+from scipy.stats import shapiro
+
+normalityTest_df = df.drop(columns=['Provinsi', 'Kabupaten/Kota', 'Klasifikasi Kemiskinan', 'YEAR', 'lat', 'long','Id_provinsi', 'Kode_provinsi', 'Sumber_provinsi', 'Geometry_provinsi'])
+
+normalityTest_df.info()
+
+
+
 # Pemanggilan visualisasi
 if visual_option == "Persentase Penduduk Miskin":
     fig = visualisasi.vis_penduduk_miskin(df)

@@ -163,6 +163,12 @@ df_pca = pd.DataFrame(reduced, columns=["PCA 1", "PCA 2"])
 df_pca["Klasifikasi"] = df["Klasifikasi"].values
 df_pca["Kabupaten/Kota"] = df["Kabupaten/Kota"].values
 
+from scipy.stats import shapiro
+
+normalityTest_df = df.drop(columns=['Provinsi', 'Kabupaten/Kota', 'Klasifikasi Kemiskinan', 'YEAR', 'lat', 'long','Id_provinsi', 'Kode_provinsi', 'Sumber_provinsi', 'Geometry_provinsi'])
+
+normalityTest_df.info()
+
 # Visualisasi
 def vis_penduduk_miskin (df):
         # Jitter koordinat agar tidak tumpang tindih
