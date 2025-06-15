@@ -221,6 +221,49 @@ elif visual_option == "Visualisasi PCA Interaktif":
     fig = visualisasi.visualisasi_cluster_hover(df)
     st.plotly_chart(fig, use_container_width=True)
 
+    # Tambahkan deskripsi klasifikasi
+    st.markdown("### 🟩 Kelompok *Lebih Baik*")
+    st.markdown("""
+    Kelompok ini terdiri dari kabupaten/kota dengan karakteristik indikator yang unggul, antara lain:
+    - Persentase penduduk miskin terendah (**5,62%**)
+    - Rata-rata lama sekolah tertinggi (**10,3 tahun**)
+    - Indeks Pembangunan Manusia (IPM) tertinggi (**79,2**)
+    - Pengeluaran per kapita tertinggi (**Rp 16,7 juta**)
+    - Akses sanitasi dan air minum sangat tinggi (**83,7%** dan **98,1%**)
+    - Umur harapan hidup tertinggi (**73,6 tahun**)
+    - PDRB tertinggi (**Rp 304,8 miliar**)
+
+    Meskipun kelompok ini memiliki tingkat pengangguran terbuka yang lebih tinggi (**9,74%**), hal ini disebabkan oleh daerah perkotaan yang lebih maju, di mana partisipasi angkatan kerja dan pencarian kerja juga lebih tinggi.
+    """)
+
+    st.markdown("### 🟦 Kelompok *Baik*")
+    st.markdown("""
+    Kelompok ini mencerminkan kondisi yang relatif stabil dan cukup baik di banyak aspek:
+    - Persentase penduduk miskin sedang (**11,4%**)
+    - Rata-rata lama sekolah menengah (**8,57 tahun**)
+    - IPM baik (**70,6**)
+    - Pengeluaran per kapita sedang (**Rp 10,4 juta**)
+    - Sanitasi dan air minum cukup layak (**79,3%** dan **86,3%**)
+    - Umur harapan hidup cukup tinggi (**69,8 tahun**)
+    - PDRB menengah (**Rp 17 juta**)
+
+    Kelompok ini dapat dikatakan sebagai kabupaten/kota yang sudah relatif baik dalam pembangunan, namun masih memiliki ruang untuk ditingkatkan.
+    """)
+
+    st.markdown("### 🟥 Kelompok *Kurang*")
+    st.markdown("""
+    Kabupaten/kota dalam kelompok ini memiliki tantangan pembangunan yang lebih besar, ditandai dengan:
+    - Persentase penduduk miskin sangat tinggi (**34,4%**)
+    - Rata-rata lama sekolah terendah (**4,6 tahun**)
+    - IPM terendah (**51,9**)
+    - Pengeluaran per kapita paling rendah (**Rp 5,3 juta**)
+    - Sanitasi dan air minum sangat terbatas (**28,9%** dan **52,8%**)
+    - Umur harapan hidup paling rendah (**63,9 tahun**)
+    - PDRB paling rendah (**Rp 1,1 juta**)
+
+    Meskipun tingkat pengangguran terbuka rendah (**1,68%**), hal ini tidak serta-merta menunjukkan kondisi ekonomi yang baik — justru bisa jadi mencerminkan kurangnya akses terhadap pekerjaan formal atau terbatasnya partisipasi dalam angkatan kerja yang aktif.
+    """)
+
 elif visual_option == "Spearman Correlation Heatmap":
     fig = visualisasi.visualisasi_spearman_heatmap(df)
     st.pyplot(fig)
