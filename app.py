@@ -180,8 +180,8 @@ visual_option = st.sidebar.radio("Pilih Jenis Visualisasi", [
     "Umur Harapan Hidup",
     "Rata-rata Salary per Provinsi",
     "Korelasi IPM dan Umur Harapan Hidup",
-    "Spearman Correlation Heatmap",
-    "Visualisasi PCA Interaktif"  # ini Plotly
+    "Visualisasi PCA Interaktif",
+    "Spearman Correlation Heatmap"  # ini Plotly
 ])
 
 from scipy.stats import shapiro
@@ -217,11 +217,10 @@ elif visual_option == "Korelasi IPM dan Umur Harapan Hidup":
     fig = visualisasi.visualisasi_korelasi_ipm_umur(df)
     st.pyplot(fig)
 
-elif visual_option == "Spearman Correlation Heatmap":
-    fig = visualisasi.visualisasi_spearman_heatmap(df)
-    st.pyplot(fig)
-
 elif visual_option == "Visualisasi PCA Interaktif":
     fig = visualisasi.visualisasi_cluster_hover(df)
     st.plotly_chart(fig, use_container_width=True)
 
+elif visual_option == "Spearman Correlation Heatmap":
+    fig = visualisasi.visualisasi_spearman_heatmap(df)
+    st.pyplot(fig)

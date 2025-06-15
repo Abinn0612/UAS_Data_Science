@@ -501,24 +501,13 @@ def visualisasi_korelasi_ipm_umur(df):
 
 def visualisasi_spearman_heatmap(df):
 
-    # Siapkan data korelasi (hanya kolom numerik)
-    correlation_df = df.select_dtypes(include=['number']).copy()
+    correlation_df = normalityTest_df
 
-    # Hitung korelasi Spearman
     correlation_matrix = correlation_df.corr(method='spearman')
 
-    # Buat plot heatmap
-    fig, ax = plt.subplots(figsize=(12, 10))
-    sns.heatmap(
-        correlation_matrix,
-        annot=True,
-        cmap='viridis',
-        fmt=".2f",
-        linewidths=0.5,
-        ax=ax
-    )
-    ax.set_title("Spearman Correlation Heatmap", fontsize=14)
-    plt.tight_layout()
+    plt.figure(figsize=(12, 10))
+    sns.heatmap(correlation_matrix, annot=True, cmap='viridis', fmt=".2f", linewidths=0.5)
+    plt.title("Spearman Correlation Heatmap")
     return fig
 
 def visualisasi_cluster_hover(df):
