@@ -493,6 +493,31 @@ def visualisasi_korelasi_ipm_umur(df):
     plt.tight_layout()
     return fig
 
+def visualisasi_correlation_heatmap(df):
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+
+    # Kolom yang ingin dianalisis korelasinya (pastikan tidak ada kolom kategorikal)
+    exclude_cols = ['Provinsi', 'Kabupaten/Kota', 'Klasifikasi Kemiskinan', 'YEAR',
+                    'lat', 'long', 'Id_provinsi', 'Kode_provinsi', 'Sumber_provinsi', 'Geometry_provinsi']
+
+    correlation_df = df.drop(columns=[col for col in exclude_cols if col in df.columns])
+
+    correlation_matrix = correlation_df.corr(method='spearman')
+
+    fig, ax = plt.subplots(figsize=(12, 10))
+    sns.heatmap(
+        correlation_matrix,
+        annot=True,
+        cmap='viridis',
+        fmt=".2f",
+        linewidths=0.5,
+        ax=ax
+    )
+    ax.set_title("Spearman Correlation Heatmap")
+    plt.tight_layout()
+    return fig
+
 def visualisasi_cluster_hover(df):
     import plotly.express as px
     from sklearn.decomposition import PCA

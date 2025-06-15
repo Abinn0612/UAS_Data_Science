@@ -180,7 +180,7 @@ visual_option = st.sidebar.radio("Pilih Jenis Visualisasi", [
     "Umur Harapan Hidup",
     "Rata-rata Salary per Provinsi",
     "Korelasi IPM dan Umur Harapan Hidup",
-    "Visualisasi PCA Klasifikasi",
+    "Spearman Correlation Heatmap",
     "Visualisasi PCA Interaktif"  # ini Plotly
 ])
 
@@ -207,6 +207,10 @@ elif visual_option == "Rata-rata Salary per Provinsi":
 
 elif visual_option == "Korelasi IPM dan Umur Harapan Hidup":
     fig = visualisasi.visualisasi_korelasi_ipm_umur(df)
+    st.pyplot(fig)
+
+elif visual_option == "Spearman Correlation Heatmap":
+    fig = visualisasi.visualisasi_correlation_heatmap(df)
     st.pyplot(fig)
 
 elif visual_option == "Visualisasi PCA Interaktif":
