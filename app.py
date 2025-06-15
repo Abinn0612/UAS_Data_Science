@@ -210,7 +210,7 @@ elif visual_option == "Korelasi IPM dan Umur Harapan Hidup":
     st.pyplot(fig)
 
 elif visual_option == "Spearman Correlation Heatmap":
-    fig = visualisasi.visualisasi_correlation_heatmap(df)
+    fig = visualisasi.visualisasi_spearman_heatmap(df)
     st.pyplot(fig)
 
 elif visual_option == "Visualisasi PCA Interaktif":
