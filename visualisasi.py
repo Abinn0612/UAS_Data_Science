@@ -493,17 +493,15 @@ def visualisasi_korelasi_ipm_umur(df):
     plt.tight_layout()
     return fig
 
-def visualisasi_correlation_heatmap(df):
-    import seaborn as sns
-    import matplotlib.pyplot as plt
+def visualisasi_spearman_heatmap(df):
 
-    # Buang kolom yang bukan numerik
+    # Siapkan data korelasi (hanya kolom numerik)
     correlation_df = df.select_dtypes(include=['number']).copy()
 
     # Hitung korelasi Spearman
     correlation_matrix = correlation_df.corr(method='spearman')
 
-    # Plot heatmap
+    # Buat plot heatmap
     fig, ax = plt.subplots(figsize=(12, 10))
     sns.heatmap(
         correlation_matrix,
@@ -513,7 +511,7 @@ def visualisasi_correlation_heatmap(df):
         linewidths=0.5,
         ax=ax
     )
-    ax.set_title("Spearman Correlation Heatmap")
+    ax.set_title("Spearman Correlation Heatmap", fontsize=14)
     plt.tight_layout()
     return fig
 
