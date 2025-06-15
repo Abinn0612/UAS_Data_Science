@@ -500,7 +500,7 @@ def visualisasi_korelasi_ipm_umur(df):
     return fig
 
 def visualisasi_spearman_heatmap(df):
-    correlation_df = df.select_dtypes(include=['number']).copy()
+    correlation_df = normalityTest_df.select_dtypes(include=['number']).copy()
     
     # Opsional: drop kolom yang tidak bervariasi (seperti YEAR)
     correlation_df = correlation_df.loc[:, correlation_df.nunique() > 1]
