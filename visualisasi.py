@@ -497,14 +497,13 @@ def visualisasi_correlation_heatmap(df):
     import seaborn as sns
     import matplotlib.pyplot as plt
 
-    # Kolom yang ingin dianalisis korelasinya (pastikan tidak ada kolom kategorikal)
-    exclude_cols = ['Provinsi', 'Kabupaten/Kota', 'Klasifikasi Kemiskinan', 'YEAR',
-                    'lat', 'long', 'Id_provinsi', 'Kode_provinsi', 'Sumber_provinsi', 'Geometry_provinsi']
+    # Buang kolom yang bukan numerik
+    correlation_df = df.select_dtypes(include=['number']).copy()
 
-    correlation_df = df.drop(columns=[col for col in exclude_cols if col in df.columns])
-
+    # Hitung korelasi Spearman
     correlation_matrix = correlation_df.corr(method='spearman')
 
+    # Plot heatmap
     fig, ax = plt.subplots(figsize=(12, 10))
     sns.heatmap(
         correlation_matrix,
