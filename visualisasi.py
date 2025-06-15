@@ -500,14 +500,24 @@ def visualisasi_korelasi_ipm_umur(df):
     return fig
 
 def visualisasi_spearman_heatmap(df):
-
-    correlation_df = normalityTest_df
+    correlation_df = df.select_dtypes(include=['number']).copy()
+    
+    # Opsional: drop kolom yang tidak bervariasi (seperti YEAR)
+    correlation_df = correlation_df.loc[:, correlation_df.nunique() > 1]
 
     correlation_matrix = correlation_df.corr(method='spearman')
 
-    plt.figure(figsize=(12, 10))
-    sns.heatmap(correlation_matrix, annot=True, cmap='viridis', fmt=".2f", linewidths=0.5)
-    plt.title("Spearman Correlation Heatmap")
+    fig, ax = plt.subplots(figsize=(12, 10))
+    sns.heatmap(
+        correlation_matrix,
+        annot=True,
+        cmap='viridis',
+        fmt=".2f",
+        linewidths=0.5,
+        ax=ax
+    )
+    ax.set_title("Spearman Correlation Heatmap", fontsize=14)
+    plt.tight_layout()
     return fig
 
 def visualisasi_cluster_hover(df):
